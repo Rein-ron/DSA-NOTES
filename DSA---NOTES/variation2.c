@@ -154,9 +154,9 @@ int main(){
 
   int catcher = Locate(&L, 20);
   if(catcher != -1){
-    printf("Found\n");
+    printf("Found");
   }else{
-    printf("Not Found\n");
+    printf("Not Found");
   }
 
   printf("\nDeleteByValue:\n");
