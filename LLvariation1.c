@@ -91,7 +91,7 @@ void insertLast(List* L, int data){
 
     // trav->next = newNode;
     // L->count++;
-    insertPos(L, data, L->count - 1);
+    insertPos(L, data, L->count);
 }
 
 void deletePos(List* L, int position){
@@ -155,7 +155,7 @@ int retrieve(List* L, int index){
 
 int locate(List* L, int data){
     Node* trav;
-    int i;
+    int i = 0;
     for(trav = L->head;trav != NULL;trav = trav->next){
         if(trav->data == data) return i;
         i++;
@@ -198,7 +198,7 @@ int main(){
     }else{
         printf("Not Found\n");
     }
-    catcher = locate(L, 20);
+    catcher = locate(L, 100);
     if(catcher != -1){
         printf("Found\n");
     }else{
