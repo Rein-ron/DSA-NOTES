@@ -40,7 +40,7 @@ void peek(Stack* S){
 void display(Stack* S){
     int i;
 
-    for(i = 0;i <= S->top;i++){
+    for(i = S->top;i >= 0;i--){
         printf("%d ", S->items[i]);
     }
 
