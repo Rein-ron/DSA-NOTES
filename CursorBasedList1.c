@@ -62,6 +62,28 @@ void insertLast(int* L, VHeap* V, int elem){
     }
 }
 
+void insertPos(int* L, VHeap *V, int elem, int pos){
+    int newCell = alloc(V);
+    if(newCell != -1){
+        V->H[newCell].elem = elem;
+        V->H[newCell].next = - 1;
+
+        if(*L == -1){
+            V->H[newCell].next = *L;
+            *L = newCell;
+        }else{
+            int p, i;
+            for(p = *L, i = 0;i < pos-1 && V->H[p].next != -1;i++){
+                p = V->H[p].next;
+            }
+            V->H[newCell].next = V->H[p].next;
+            V->H[p].next = newCell;
+        }
+
+
+    }
+}
+
 void insertSorted(int* L, VHeap* V, int elem){
     int newCell = alloc(V);
     if(newCell != -1){
@@ -73,9 +95,13 @@ void insertSorted(int* L, VHeap* V, int elem){
             *L = newCell;
         }else{
             int p;
-            for(p = *L;V->H[p].next != -1 && V->H[V->H[p].next].elem < elem;p = V->H[p].next){}
-            V->H[newCell].next = V->H[p].next;
-            V->H[p].next = newCell;
+            for(p = *L;V->H[p].next != -1 && V->H[V->H[p].next].elem < elem;){
+                p = V->H[p].next;
+            }
+            if(p != -1){
+                V->H[newCell].next = V->H[p].next;
+                V->H[p].next = newCell;
+            }
         }
     }
 }
@@ -139,6 +165,9 @@ int main(){
     insertFirst(&L, &H, 10);
     display(L, H);
     deleteAllOccur(&L, &H, 10);
+    display(L, H);
+    insertPos(&L, &H, 80, 2);
+    insertPos(&L, &H, 90, 3);
     display(L, H);
     return 0;
 }
