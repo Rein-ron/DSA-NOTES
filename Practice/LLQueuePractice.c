@@ -70,15 +70,70 @@ int front(Queue* Q){
     return Q->front->data;
 }
 
+void reversedQueue(Queue* Q){
+	int temp[100];
+	int top = -1;
+	
+	while(!isEmpty(Q)){
+	   temp[++top] = dequeue(Q);
+	}
+		
+	while(top >= 0){
+		enqueue(Q, temp[top--]);	
+	}
+		
+		
+}
+
+void SOE(Queue* Q){
+	int temp[100];
+	int top = -1;
+	int value;
+	int sum = 0;
+	
+	while(!isEmpty(Q)){
+		value = dequeue(Q);
+		sum += value;
+		temp[++top] = value;
+	}
+	
+	while(top >= 0){
+		enqueue(Q, temp[top--]);
+	}
+	
+	printf("The sum of all elements is %d\n", sum);
+}
+
+void AvgValue(Queue* Q){
+	int temp[100];
+	int top = -1;
+	int value;
+	float sum = 0;
+	int count = 0;
+		
+	while(!isEmpty(Q)){
+		value = dequeue(Q);
+		sum += value;
+		temp[++top] = value;
+		count++;	
+	}
+	
+	while(top >= 0){
+		enqueue(Q, temp[top--]);
+	}
+	
+	float avg = sum / count;
+	printf("The average value of the Queue is %.2f\n", avg);
+}
 
 void display(Queue* Q){
     Node* trav = Q->front;
-    
+
     while(trav != NULL){
         printf("%d ", trav->data);
         trav = trav->next;
     }
-
+	
     printf("\n");
 }
 
@@ -101,9 +156,14 @@ int main(){
    
    
     display(Q);
+    printf("Count of the queue is %d\n", count);
     printf("Front of the Queue is %d\n",front(Q));
-    // dequeue(Q);
-    // dequeue(Q);
-    // dequeue(Q);
-    // display(Q);
+//     dequeue(Q);
+//     dequeue(Q);
+//     dequeue(Q);	
+	 reversedQueue(Q);
+     display(Q);
+     SOE(Q);
+     AvgValue(Q);
+     
 }
